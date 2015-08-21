@@ -4,7 +4,7 @@ from matplotlib import pyplot as plt
 
 img1 = cv2.imread('box-03.jpg',0)          # queryImage
 img2 = cv2.imread('brown_boxes.png',0) # trainImage
-
+#
 
 # Initiate SIFT detector
 orb = cv2.ORB_create()
