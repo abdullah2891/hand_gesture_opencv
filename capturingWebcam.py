@@ -6,7 +6,7 @@ __author__ = 'Abdullah_Rahman'
 
 cap = cv2.VideoCapture(0)
 
-
+trainer=cv2.imread('box-03.jpg',0)
 
 while(True):
     # Capture frame-by-frame
@@ -19,7 +19,7 @@ while(True):
     gray=np.float32(gray)
     dst=cv2.cornerHarris(gray,2,3,0.04)
     dst=cv2.dilate(dst,None)
-    frame[dst>0.001*dst.max()]=[0,0,255]
+    frame[dst>0.01*dst.max()]=[0,0,255]
     print dst
 
 
