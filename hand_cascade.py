@@ -1,3 +1,5 @@
+#your mouse will go banana don't use it yet
+
 import cv2
 import pyautogui as mouse
 
