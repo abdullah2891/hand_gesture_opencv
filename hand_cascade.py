@@ -1,9 +1,12 @@
-#your mouse will go banana don't run it yet
 
 import cv2
 import pyautogui as mouse
 
 __author__ = 'Abdullah_Rahman'
+
+
+#your mouse will go banana don't run it yet
+
 
 
 hand = cv2.CascadeClassifier('Hand.Cascade.1.xml')
