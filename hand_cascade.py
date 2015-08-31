@@ -5,32 +5,37 @@ import pyautogui as mouse
 __author__ = 'Abdullah_Rahman'
 
 
-#your mouse will go banana don't run it yet
 
 
 
 hand = cv2.CascadeClassifier('Hand.Cascade.1.xml')
+fgbg=cv2.createBackgroundSubtractorMOG2()
+
+
+
+
 cap=cv2.VideoCapture(0)
 
 screen=mouse.size()
 
 while(1):
+
     ret, frame= cap.read()
 
 
-    gray=cv2.cvtColor(frame,cv2.COLOR_BGR2GRAY)
+    #gray=cv2.cvtColor(frame,cv2.COLOR_BGR2GRAY)
 
-    ret,thresholded=cv2.threshold(frame,100,255,cv2.THRESH_TOZERO)
+    #ret,thresholded=cv2.threshold(frame,90,255,cv2.THRESH_TOZERO)
+    fgmask=fgbg.apply(frame)
     pos_hand=hand.detectMultiScale(
-        thresholded,
+        fgmask,
         scaleFactor=1.2,
         minNeighbors=3,
-        minSize=(50, 50)
+        minSize=(60, 60)
     )
 
 
-    sum_x=0
-    sum_y=0
+    sum_x=0;sum_y=0;
 
 
     for (x,y,w,h) in pos_hand:
