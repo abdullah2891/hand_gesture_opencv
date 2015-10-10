@@ -4,7 +4,6 @@ import pyautogui as mouse
 __author__ = 'Abdullah_Rahman'
 
 
-#your mouse will go banana don't run it yet
 
 
 def smoother(l):
@@ -14,6 +13,7 @@ def smoother(l):
 
 hand = cv2.CascadeClassifier('Hdetector.xml')
 fgbg=cv2.createBackgroundSubtractorMOG2()
+
 
 
 
