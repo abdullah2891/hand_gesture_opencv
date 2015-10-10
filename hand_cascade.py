@@ -48,6 +48,7 @@ while(1):
 
 
 
+
     try:
         a=pos_finger[0]
         (x,y,w,h)=a
