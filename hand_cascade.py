@@ -1,8 +1,14 @@
-
 import cv2
 import pyautogui as mouse
+import math
 
 __author__ = 'Abdullah_Rahman'
+
+
+#your mouse will go banana don't run it yet
+
+
+
 
 
 
@@ -14,9 +20,16 @@ fgbg=cv2.createBackgroundSubtractorMOG2()
 
 
 
-cap=cv2.VideoCapture(0)
+
+
+#cap=cv2.VideoCapture(0)
+cap=cv2.VideoCapture("vtest.mp4")
+print cap.get(5)
 
 screen=mouse.size()
+
+X=[];Y=[];H=[];W=[]
+
 
 while(1):
 
@@ -27,25 +40,22 @@ while(1):
 
     #ret,thresholded=cv2.threshold(frame,90,255,cv2.THRESH_TOZERO)
     fgmask=fgbg.apply(frame)
+
     pos_hand=hand.detectMultiScale(
-        fgmask,
-        scaleFactor=1.2,
-        minNeighbors=3,
-        minSize=(60, 60)
-    )
+            fgmask,
+            scaleFactor=1.1,
+            minNeighbors=8,
+            minSize=(100, 100)
+        )
 
 
-    sum_x=0;sum_y=0;
-
-
-    for (x,y,w,h) in pos_hand:
-
-        mouse.moveTo((screen[0]-x),(screen[1]-y))
-        cv2.rectangle(frame, (x,y),(x+w, y+h), (255, 0, 0), 2)
-        roi_gray = frame[y:y+h, x:x+w]
-        roi_color = frame[y:y+h, x:x+w]
-
-
+    try:
+        a=pos_hand[0]
+        x=a[0];y=a[1];w=a[0]+a[2];h=a[1]+a[3]
+        cv2.rectangle(frame, (x, y), (w,h), (0, 255, 0), 2)
+        #print x,y,w,h
+    except IndexError:
+        pass
 
 
     cv2.imshow('frame',frame)
