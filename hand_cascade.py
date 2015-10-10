@@ -47,7 +47,8 @@ while(1):
         )
 
 
-
+    if len(pos_finger)>0:
+        print pos_finger
 
     try:
         a=pos_finger[0]
