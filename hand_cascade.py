@@ -7,15 +7,13 @@ __author__ = 'Abdullah_Rahman'
 #your mouse will go banana don't run it yet
 
 
-
-
-
+def smoother(l):
+    return int(sum(l)/len(l))
 
 
 
 hand = cv2.CascadeClassifier('Hdetector.xml')
 fgbg=cv2.createBackgroundSubtractorMOG2()
-
 
 
 
@@ -43,21 +41,20 @@ while(1):
             fgmask,
             scaleFactor=1.1,
             minNeighbors=40,
-            minSize=(200, 200)
+            minSize=(100, 100)
         )
 
+    if len(pos_finger)>3:                               #eliminating false positives(spot detection)
+        for (x,y,w,h) in pos_finger:
+            #print x,y,w,h
+            X.append(x),Y.append(y),W.append(w),H.append(h)
+            #cv2.rectangle(frame, (x, y), (x+w,y+h), (0, 255, 0), 2)
 
-    if len(pos_finger)>0:
-        print pos_finger
 
-    try:
-        a=pos_finger[0]
-        (x,y,w,h)=a
-        cv2.rectangle(frame, (x, y), (x+w,y+h), (0, 255, 0), 2)
 
-    except IndexError:
-        pass
-
+    if(len(X)>10):
+        cv2.rectangle(frame, (smoother(X), smoother(Y)), (smoother(X)+smoother(W),smoother(Y)+smoother(H)), (0, 255, 0), 2)
+        X=[];Y=[];W=[];H=[]
 
 
 
