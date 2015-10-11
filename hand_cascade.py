@@ -34,7 +34,7 @@ while(1):
     fgmask=fgbg.apply(frame)
 
     pos_finger=hand.detectMultiScale(
-            fgmask,
+            frame,
             scaleFactor=1.1,
             minNeighbors=40,
             minSize=(50, 50)
