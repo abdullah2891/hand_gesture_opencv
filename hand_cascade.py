@@ -16,8 +16,9 @@ fgbg=cv2.createBackgroundSubtractorMOG2()
 
 cap=cv2.VideoCapture(0)
 #cap=cv2.VideoCapture("vtest.mp4")
+print cap.get(3),cap.get(4)
 
-screen=mouse.size()
+print mouse.size()
 
 X=[];Y=[];H=[];W=[]
 
@@ -35,7 +36,7 @@ while(1):
     pos_finger=hand.detectMultiScale(
             fgmask,
             scaleFactor=1.1,
-            minNeighbors=30,
+            minNeighbors=40,
             minSize=(50, 50)
         )
 
