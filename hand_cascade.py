@@ -47,6 +47,7 @@ while(1):
 
 
 
+
     if(len(X)>10):
         cv2.rectangle(frame, (smoother(X), smoother(Y)), (smoother(X)+smoother(W),smoother(Y)+smoother(H)), (0, 255, 0), 2)
         mouse.moveTo(smoother(X),smoother(Y),0.2)
