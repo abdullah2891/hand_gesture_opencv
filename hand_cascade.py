@@ -4,8 +4,6 @@ import pyautogui as mouse
 __author__ = 'Abdullah_Rahman'
 
 
-
-
 def smoother(l):
     return int(sum(l)/len(l))
 
@@ -16,11 +14,8 @@ fgbg=cv2.createBackgroundSubtractorMOG2()
 
 
 
-
-
-
-#cap=cv2.VideoCapture(0)
-cap=cv2.VideoCapture("vtest.mp4")
+cap=cv2.VideoCapture(0)
+#cap=cv2.VideoCapture("vtest.mp4")
 
 screen=mouse.size()
 
@@ -40,21 +35,21 @@ while(1):
     pos_finger=hand.detectMultiScale(
             fgmask,
             scaleFactor=1.1,
-            minNeighbors=40,
-            minSize=(100, 100)
+            minNeighbors=30,
+            minSize=(50, 50)
         )
 
     if len(pos_finger)>3:                               #eliminating false positives(spot detection)
         for (x,y,w,h) in pos_finger:
             #print x,y,w,h
             X.append(x),Y.append(y),W.append(w),H.append(h)
-            #cv2.rectangle(frame, (x, y), (x+w,y+h), (0, 255, 0), 2)
+            cv2.rectangle(frame, (x, y), (x+w,y+h), (0, 255, 0), 2)
 
 
 
     if(len(X)>10):
         cv2.rectangle(frame, (smoother(X), smoother(Y)), (smoother(X)+smoother(W),smoother(Y)+smoother(H)), (0, 255, 0), 2)
-        mouse.moveTo(smoother(X),smoother(Y),0.5)
+        mouse.moveTo(smoother(X),smoother(Y),0.2)
         X=[];Y=[];W=[];H=[]
 
 
