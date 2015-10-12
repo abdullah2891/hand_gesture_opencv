@@ -1,5 +1,6 @@
 import cv2
 import pyautogui as mouse
+import time
 
 __author__ = 'Abdullah_Rahman'
 
@@ -14,8 +15,8 @@ fgbg=cv2.createBackgroundSubtractorMOG2()
 
 
 
-cap=cv2.VideoCapture(0)
-#cap=cv2.VideoCapture("vtest.mp4")
+#cap=cv2.VideoCapture(0)
+cap=cv2.VideoCapture("vtest.mp4")
 print cap.get(3),cap.get(4)
 
 print mouse.size()
@@ -34,7 +35,7 @@ while(1):
     fgmask=fgbg.apply(frame)
 
     pos_finger=hand.detectMultiScale(
-            frame,
+            fgmask,
             scaleFactor=1.1,
             minNeighbors=40,
             minSize=(50, 50)
@@ -59,6 +60,8 @@ while(1):
     cv2.imshow('frame',frame)
     if cv2.waitKey(1) & 0xFF == ord('q'):
         break
+
+
 cap.release()
 cv2.destroyAllWindows()
 
