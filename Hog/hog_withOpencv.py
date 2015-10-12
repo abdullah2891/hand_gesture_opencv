@@ -35,9 +35,8 @@ centers= c.cluster_centers_
 
 print  "Finding the centroid of hand"
 centroidObj=c1.fit(centers)
-
-
 centroid=centroidObj.cluster_centers_
+
 
 (X,Y)=centroid[0]
 
