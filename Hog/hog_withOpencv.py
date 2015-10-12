@@ -1,4 +1,3 @@
-import numpy as np
 import cv2
 from matplotlib import pyplot as plt
 from sklearn.cluster import KMeans
@@ -15,14 +14,19 @@ c1=KMeans(n_clusters=1)
 orb = cv2.ORB_create()
 
 
-
+print "Starting ORB"
 kp=orb.detect(img,None)
+
+kp,des=orb.compute(img,kp)
+
+print "FOUND KEY POINTS"
+
 
 X=[]
 for points in kp:
     X.append(points.pt)
 
-print X
+#print X
 
 print "Finding cluster centers"
 c.fit(X)
@@ -36,9 +40,6 @@ centroidObj=c1.fit(centers)
 centroid=centroidObj.cluster_centers_
 
 (X,Y)=centroid[0]
-
-
-kp,des=orb.compute(img,kp)
 
 print "Drawing the clusters"
 for (x,y) in centers:
