@@ -15,11 +15,19 @@ fgbg=cv2.createBackgroundSubtractorMOG2()
 
 
 
-#cap=cv2.VideoCapture(0)
-cap=cv2.VideoCapture("vtest.mp4")
+cap=cv2.VideoCapture(0)
+#cap=cv2.VideoCapture("vtest.mp4")
 print cap.get(3),cap.get(4)
 
-print mouse.size()
+mouse_scale = mouse.size()
+print mouse_scale
+
+print "MANUALLY TUNED"
+ScaleX = 3
+ScaleY = 2
+
+print ScaleX,ScaleY
+
 
 X=[];Y=[];H=[];W=[]
 
@@ -44,7 +52,7 @@ while(1):
     if len(pos_finger)>3:                               #eliminating false positives(spot detection)
         for (x,y,w,h) in pos_finger:
             #print x,y,w,h
-            X.append(x),Y.append(y),W.append(w),H.append(h)
+            X.append(ScaleX * x),Y.append(ScaleY * y),W.append(w),H.append(h)
             cv2.rectangle(frame, (x, y), (x+w,y+h), (0, 255, 0), 2)
 
 
